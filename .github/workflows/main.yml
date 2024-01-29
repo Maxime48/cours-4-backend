@@ -11,12 +11,6 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    services:
-      app:
-        image: docker-compose:1.29.2
-        volumes:
-          - ${{ github.workspace }}:/var/www/html
-
     steps:
       - uses: actions/checkout@v2
 
