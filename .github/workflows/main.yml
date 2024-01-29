@@ -1,0 +1,38 @@
+name: PHP CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    services:
+      app:
+        image: docker-compose:1.29.2
+        volumes:
+          - ${{ github.workspace }}:/var/www/html
+        working_dir: /var/www/html
+        command: ["./vendor/bin/phpunit", "./vendor/bin/phpstan analyse", "./vendor/bin/phpcs"]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Validate composer.json and composer.lock
+        run: docker-compose run --rm app composer validate
+
+      - name: Install dependencies
+        run: docker-compose run --rm app composer install --prefer-dist --no-progress
+
+      - name: Run phpstan
+        run: docker-compose run --rm app vendor/bin/phpstan analyse
+
+      - name: Run phpcs
+        run: docker-compose run --rm app vendor/bin/phpcs
+
+      - name: Run phpunit
+        run: docker-compose run --rm app ./vendor/bin/phpunit
