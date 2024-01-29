@@ -12,19 +12,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
+
+      - uses : shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
 
       - name: Validate composer.json and composer.lock
-        run: docker-compose run --rm php composer validate
+        run: php composer validate
 
       - name: Install dependencies
-        run: docker-compose run --rm php composer install --prefer-dist --no-progress
+        run: php composer install --prefer-dist --no-progress
 
       - name: Run phpstan
-        run: docker-compose run --rm php vendor/bin/phpstan analyse
+        run: php vendor/bin/phpstan analyse
 
       - name: Run phpcs
-        run: docker-compose run --rm php vendor/bin/phpcs
+        run: php vendor/bin/phpcs
 
       - name: Run phpunit
-        run: docker-compose run --rm php ./vendor/bin/phpunit
+        run: php ./vendor/bin/phpunit
