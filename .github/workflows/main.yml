@@ -31,4 +31,4 @@ jobs:
         run: php vendor/bin/phpcs
 
       - name: Run phpunit
-        run: ./run-tests.sh
+        run: chmod +x run-tests.sh && ./run-tests.sh
