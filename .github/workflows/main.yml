@@ -30,5 +30,8 @@ jobs:
       - name: Run phpcs
         run: php vendor/bin/phpcs
 
+      - name: Setup Project
+        run: php bin/console doctrine:migrations:migrate
+
       - name: Run phpunit
         run: chmod +x run-tests.sh && ./run-tests.sh
