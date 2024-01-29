@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cours{% endblock %}
+
+{% block body %}
+    <h1>Cours</h1>
+
+    <table>
+        <tr>
+            <th>Nom</th>
+            <th>Professeur</th>
+            <th>Duree</th>
+            <th>Actions</th>
+        </tr>
+        {% for cour in cours %}
+            <tr>
+                <td>{{ cour.nom }}</td>
+                <td>{{ cour.professeur }}</td>
+                <td>{{ cour.duree }}</td>
+                <td>
+                    <a href="{{ path('app_delete_cours', {'id': cour.id}) }}">Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Add a new course</h2>
+
+    <form action="{{ path('app_add_cours') }}" method="post">
+        <label for="nom">Nom:</label><br>
+        <input type="text" id="nom" name="nom"><br>
+        <label for="professeur">Professeur:</label><br>
+        <input type="text" id="professeur" name="professeur"><br>
+        <label for="duree">Duree:</label><br>
+        <input type="text" id="duree" name="duree"><br>
+        <input type="submit" value="Submit">
+    </form>
+{% endblock %}
