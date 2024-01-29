@@ -1,4 +1,6 @@
 {
+    "name": "vendor/backend",
+    "description": "Petit backend pour le projet",
     "type": "project",
     "license": "proprietary",
     "minimum-stability": "stable",
