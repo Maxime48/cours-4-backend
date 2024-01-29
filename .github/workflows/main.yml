@@ -16,20 +16,15 @@ jobs:
 
       - name: Validate composer.json and composer.lock
         run: docker-compose run --rm app composer validate
-        working-directory: /var/www/html
 
       - name: Install dependencies
         run: docker-compose run --rm app composer install --prefer-dist --no-progress
-        working-directory: /var/www/html
 
       - name: Run phpstan
         run: docker-compose run --rm app vendor/bin/phpstan analyse
-        working-directory: /var/www/html
 
       - name: Run phpcs
         run: docker-compose run --rm app vendor/bin/phpcs
-        working-directory: /var/www/html
 
       - name: Run phpunit
         run: docker-compose run --rm app ./vendor/bin/phpunit
-        working-directory: /var/www/html
