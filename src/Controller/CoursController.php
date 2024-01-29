@@ -37,7 +37,7 @@ class CoursController extends AbstractController
     }
 
     #[Route('/cours/delete/{id}', name: 'app_delete_cours', methods: ['GET'])]
-    public function delete($id, EntityManagerInterface $entityManager): Response
+    public function delete(int $id, EntityManagerInterface $entityManager): Response
     {
         $cours = $entityManager->getRepository(Cours::class)->find($id);
 

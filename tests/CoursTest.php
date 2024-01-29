@@ -3,11 +3,12 @@
 namespace App\Tests\Entity;
 
 use App\Entity\Cours;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class CoursTest extends KernelTestCase
 {
-    private $entityManager;
+    private EntityManagerInterface $entityManager;
 
     protected function setUp(): void
     {
@@ -78,6 +79,5 @@ class CoursTest extends KernelTestCase
         parent::tearDown();
 
         $this->entityManager->close();
-        $this->entityManager = null;
     }
 }

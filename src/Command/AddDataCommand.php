@@ -19,7 +19,7 @@ use Faker\Factory;
 )]
 class AddDataCommand extends Command
 {
-    private $entityManager;
+    private EntityManagerInterface $entityManager;
 
     public function __construct(EntityManagerInterface $entityManager)
     {
